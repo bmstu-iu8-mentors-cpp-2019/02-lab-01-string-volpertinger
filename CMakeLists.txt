@@ -31,7 +31,7 @@ find_package(GTest CONFIG REQUIRED)
 add_library(02-lab-01-string-volpertinger STATIC
   # enum your files and delete this comment
   # ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-        include/string.cpp)
+        include/string.cpp include/main.cpp)
 add_executable(tests
   # TODO: enum your files and delete this comment
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/string_unittest.cpp

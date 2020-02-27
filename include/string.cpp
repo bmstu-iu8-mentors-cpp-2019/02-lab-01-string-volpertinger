@@ -13,16 +13,17 @@ String::String() : size(1) {
 String::String(const String &rhs) : size(rhs.size) {
     string = new char[size];
     for (unsigned int i = 0; i < size; ++i) {
-        string[0] = rhs[i];
+        string[i] = rhs[i];
     }
 }
 
-String::String(const char *data) {
-    for (const char *copy_str = data; *copy_str != 0; ++copy_str)
+String::String(const char *data) : size(0) {
+    const char *copy_str = data;
+    for (unsigned int i = 0; copy_str[i] != '\000'; ++copy_str)
         ++size;
-    string = new char[size];
-    for (unsigned int i = 0; i < size; ++i, ++data)
-        string[i] = *data;
+    string = new char[size - 1];
+    for (unsigned int i = 0; i < size; ++i)
+        string[i] = data[i];
 }
 
 String &String::operator=(const String &rhs) {
@@ -44,7 +45,7 @@ class String &String::operator+=(const class String &rhs) {
 
 class String &String::operator*=(unsigned int m) {
     String copy_str(*this);
-    for (unsigned int i = 0; i < m; ++i)
+    for (unsigned int i = 1; i < m; ++i)
         *this += copy_str;
     return *this;
 }
@@ -54,7 +55,7 @@ bool String::operator==(const class String &rhs) const {
         return false;
     else {
         for (unsigned int i = 0; i < size; ++i) {
-            if (string[i] != rhs[i])
+            if (string[i] != rhs.string[i])
                 return false;
         }
     }
@@ -63,24 +64,30 @@ bool String::operator==(const class String &rhs) const {
 
 bool String::operator<(const class String &rhs) const {
     for (unsigned int i = 0; i < rhs.size && i < size; ++i) {
-        if (string[i] > rhs[i])
+        if (string[i] > rhs.string[i])
             return false;
+        if (string[i] < rhs.string[i])
+            return true;
     }
-    return size <= rhs.size;
+    return size < rhs.size;
 }
 
 size_t String::Find(const class String &substr) const {
+    unsigned int j = 0;
     size_t sub_size = 0;
     size_t sub_pos = 0;
     for (unsigned int i = 0; i < size - substr.size; ++i) {
-        if (string[i] == substr.string[i]) {
+        if (string[i] == substr.string[j]) {
+            ++j;
             if (sub_size == 0)
                 sub_pos = i;
             ++sub_size;
             if (sub_size == substr.size)
                 return sub_pos;
-        } else
+        } else {
             sub_size = 0;
+            j = 0;
+        }
     }
     return -1;
 }
@@ -97,7 +104,7 @@ size_t String::Size() const {
 }
 
 bool String::Empty() const {
-    return (size != 0);
+    return (size == 0);
 }
 
 char String::operator[](size_t index) const {
@@ -109,16 +116,13 @@ char &String::operator[](size_t index) {
 }
 
 void String::RTrim(char symbol) {
-    unsigned int pos = 0;
+    unsigned int del_num = 0;
     if (string[size - 1] == symbol) {
-        for (unsigned int i = size - 1; i >= 0; ++i) {
-            if (string[i] != symbol) {
-                pos = i + 1;
-                break;
-            }
-        }
-        char *new_string = new char[pos + 1];
-        for (unsigned int i = 0; i <= pos; ++i)
+        for (unsigned int i = size - 1; string[i] == symbol; --i)
+            ++del_num;
+        size-=del_num;
+        char *new_string = new char[size];
+        for (unsigned int i = 0; i <= size; ++i)
             new_string[i] = string[i];
         delete[]string;
         string = new_string;
@@ -126,16 +130,14 @@ void String::RTrim(char symbol) {
 }
 
 void String::LTrim(char symbol) {
-    unsigned int pos = 0;
+    unsigned int del_num = 0;
     if (string[0] == symbol) {
-        for (unsigned int i = 0; i < size; ++i) {
-            if (string[i] != symbol) {
-                pos = i - 1;
-                break;
-            }
+        for (unsigned int i = 0; string[i] == symbol; ++i) {
+            ++del_num;
         }
-        char *new_string = new char[pos + 1];
-        for (unsigned int i = pos, j = 0; i <= size; ++i, ++j)
+        size-=del_num;
+        char *new_string = new char[size];
+        for (unsigned int i = del_num, j = 0; i < size+del_num; ++i, ++j)
             new_string[j] = string[i];
         delete[]string;
         string = new_string;
@@ -154,7 +156,7 @@ void String::swap(String &oth) {
 }
 
 std::ostream &operator<<(std::ostream &out, const String &str) {
-    for (unsigned int i = 0; i < str.size;)
+    for (unsigned int i = 0; i < str.size; ++i)
         out << str[i];
     return out;
 }
@@ -185,10 +187,10 @@ bool operator!=(const String &a, const String &b) {
 
 bool operator>(const String &a, const String &b) {
     for (unsigned int i = 0; i < a.Size() && i < b.Size(); ++i) {
-        if (a[i] < b[i])
+        if (a[i] <= b[i])
             return false;
+        if (a[i] > b[i])
+            return true;
     }
     return a.Size() >= b.Size();
-}
-
 }
