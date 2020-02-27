@@ -51,11 +51,9 @@ class String &String::operator*=(unsigned int m) {
 }
 
 bool String::operator==(const class String &rhs) const {
-    if {
-        (size != rhs.size)
+    if (size != rhs.size)
         return false;
-    }
-    else {
+    if (size == rhs.size) {
         for (unsigned int i = 0; i < size; ++i) {
             if (Data[i] != rhs.Data[i])
                 return false;
@@ -178,7 +176,8 @@ String operator*(const String &a, unsigned int b) {
 bool operator!=(const String &a, const String &b) {
     if (a.Size() != b.Size()) {
         return true;
-    } else {
+    }
+    if (a.Size() == b.Size()) {
         for (unsigned int i = 0; i < a.Size(); ++i) {
             if (a[i] == b[i])
                 return false;
