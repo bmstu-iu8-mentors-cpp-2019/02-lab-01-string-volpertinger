@@ -152,3 +152,43 @@ void String::swap(String &oth) {
     oth.string = s_str;
     oth.size = s_size;
 }
+
+std::ostream &operator<<(std::ostream &out, const String &str) {
+    for (unsigned int i = 0; i < str.size;)
+        out << str[i];
+    return out;
+}
+
+String operator+(const String &a, const String &b) {
+    String str(a);
+    str += b;
+    return str;
+}
+
+String operator*(const String &a, unsigned int b) {
+    String str(a);
+    str *= b;
+    return str;
+}
+
+bool operator!=(const String &a, const String &b) {
+    if (a.Size() != b.Size())
+        return true;
+    else {
+        for (unsigned int i = 0; i < a.Size(); ++i) {
+            if (a[i] == b[i])
+                return false;
+        }
+    }
+    return true;
+}
+
+bool operator>(const String &a, const String &b) {
+    for (unsigned int i = 0; i < a.Size() && i < b.Size(); ++i) {
+        if (a[i] < b[i])
+            return false;
+    }
+    return a.Size() >= b.Size();
+}
+
+}
