@@ -112,7 +112,8 @@ class String {
   friend std::ostream& operator<<(std::ostream&, const String&);
 
  private:
-  char* Data;
+  char* string;
+  size_t size;
 };
 
 /// Оператор +
