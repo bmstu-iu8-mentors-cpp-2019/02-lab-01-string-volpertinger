@@ -120,7 +120,7 @@ void String::RTrim(char symbol) {
     if (string[size - 1] == symbol) {
         for (unsigned int i = size - 1; string[i] == symbol; --i)
             ++del_num;
-        size-=del_num;
+        size -= del_num;
         char *new_string = new char[size];
         for (unsigned int i = 0; i <= size; ++i)
             new_string[i] = string[i];
@@ -135,9 +135,9 @@ void String::LTrim(char symbol) {
         for (unsigned int i = 0; string[i] == symbol; ++i) {
             ++del_num;
         }
-        size-=del_num;
+        size -= del_num;
         char *new_string = new char[size];
-        for (unsigned int i = del_num, j = 0; i < size+del_num; ++i, ++j)
+        for (unsigned int i = del_num, j = 0; i < size + del_num; ++i, ++j)
             new_string[j] = string[i];
         delete[]string;
         string = new_string;
@@ -174,9 +174,9 @@ String operator*(const String &a, unsigned int b) {
 }
 
 bool operator!=(const String &a, const String &b) {
-    if (a.Size() != b.Size())
+    if (a.Size() != b.Size()) {
         return true;
-    else {
+    } else {
         for (unsigned int i = 0; i < a.Size(); ++i) {
             if (a[i] == b[i])
                 return false;

@@ -108,14 +108,12 @@ TEST(String, Stream) {
   std::stringstream stream;
   String s1("some string");
   stream << s1 << " and " << String("stream");
-
   EXPECT_EQ("some string and stream", stream.str());
 }
 
 TEST(String, Swap) {
   String s0("some string");
   String s1("other string");
-  
 
   EXPECT_EQ("some string", s0);
   EXPECT_EQ("other string", s1);

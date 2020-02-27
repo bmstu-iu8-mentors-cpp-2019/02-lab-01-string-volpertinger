@@ -5,7 +5,6 @@ using std::cout;
 using std::endl;
 
 int main() {
-
 //Constructors
     cout << "constructors" << endl;
     String str_base, str_user("Abcde"), str_copy(str_user);
@@ -70,7 +69,7 @@ int main() {
     cout << "Swap" << endl;
     String s1("aaa"), s2("bbb");
     cout << "s1=" << s1 << endl << "s2=" << s2 << endl;
-    swap(s1, s2);
+    s1.swap(s2);
     cout << "swap" << endl << "s1=" << s1 << endl << "s2=" << s2 << endl;
 //operator+
     cout << "operator+" << endl;
