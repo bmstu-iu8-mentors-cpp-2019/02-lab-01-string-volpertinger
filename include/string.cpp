@@ -152,6 +152,3 @@ void String::swap(String &oth) {
     oth.string = s_str;
     oth.size = s_size;
 }
-
-
-}
