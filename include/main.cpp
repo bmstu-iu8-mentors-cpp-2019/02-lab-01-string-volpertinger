@@ -13,7 +13,8 @@ int main() {
     std::cout << "str_copy" << endl << str_copy << endl;
 //operator=
     cout << "operator=" << endl;
-    str_base = "Datan";
+    String new_str("Datan");
+    str_base = new_str;
     cout << str_user << endl;
 //operator <<
     cout << "operator<<" << endl;
@@ -65,12 +66,12 @@ int main() {
     cout << "LTim" << endl;
     strrt.LTrim('_');
     cout << strrt << endl;
-//swap
+//Swap
     cout << "Swap" << endl;
     String s1("aaa"), s2("bbb");
     cout << "s1=" << s1 << endl << "s2=" << s2 << endl;
-    s1.swap(s2);
-    cout << "swap" << endl << "s1=" << s1 << endl << "s2=" << s2 << endl;
+    s1.Swap(s2);
+    cout << "Swap" << endl << "s1=" << s1 << endl << "s2=" << s2 << endl;
 //operator+
     cout << "operator+" << endl;
     cout << "bbb+aaa" << endl << s1 + s2 << endl;

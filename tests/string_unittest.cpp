@@ -97,7 +97,6 @@ TEST(String, Find) {
   EXPECT_EQ(4, s1.Find(" "));
   EXPECT_EQ(5, s1.Find("str"));
   EXPECT_EQ(0, s1.Find("some"));
-  
   EXPECT_EQ(9, String{"str stri string"}.Find(String{"string"}));
   EXPECT_EQ(6, String{"strinsstring"}.Find(String{"string"}));
 
@@ -118,7 +117,7 @@ TEST(String, Swap) {
   EXPECT_EQ("some string", s0);
   EXPECT_EQ("other string", s1);
 
-  s0.swap(s1);
+    s0.Swap(s1);
 
   EXPECT_EQ("other string", s0);
   EXPECT_EQ("some string", s1);

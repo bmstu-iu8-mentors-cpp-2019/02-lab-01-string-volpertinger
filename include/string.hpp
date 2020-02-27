@@ -107,12 +107,13 @@ public:
     /// <param name="symbol"> Значение символов, которе отрезаем </param>
     void LTrim(char symbol);
 
-    void swap(String &oth);
+    void Swap
+    (String &oth);
 
     friend std::ostream &operator<<(std::ostream &, const String &);
 
 private:
-    char *string;
+    char *Data;
     size_t size;
 };
 
