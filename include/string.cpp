@@ -53,7 +53,7 @@ String &String::operator=(const String &rhs) {
 }
 
 class String &String::operator+=(const class String &rhs) {
-    size = size + rhs.size;
+    size = this->size + rhs.size;
     Resize(size);
     for (unsigned int i = size - rhs.size, j = 0; i < size + 1; ++i, ++j)
         Data[i] = rhs.Data[j];
@@ -62,7 +62,7 @@ class String &String::operator+=(const class String &rhs) {
 
 class String &String::operator+=(const char *rhs) {
     String str(rhs);
-    size = size + str.size;
+    size = this->size + str.size;
     Resize(size);
     for (unsigned int i = size - str.size, j = 0; i < size; ++i, ++j)
         Data[i] = str.Data[j];
