@@ -32,6 +32,7 @@ void String::Resize(size_t new_size) {
             new_Data[i] = Data[i];
         delete[]Data;
         Data = new_Data;
+        size = new_size;
     }
     if (new_size < size) {
         auto new_Data = new char[new_size];
@@ -39,13 +40,7 @@ void String::Resize(size_t new_size) {
             new_Data[i] = Data[i];
         delete[]Data;
         Data = new_Data;
-    }
-    if(new_size==size){
-        auto new_Data = new char[new_size];
-        for (unsigned int i = 0; i < new_size; ++i)
-            new_Data[i] = Data[i];
-        delete[]Data;
-        Data = new_Data;
+        size = new_size;
     }
 }
 
@@ -60,20 +55,18 @@ String &String::operator=(const String &rhs) {
 }
 
 class String &String::operator+=(const class String &rhs) {
-    size = this->size + rhs.size;
-    this->Resize(size);
+    this->Resize(this->size + rhs.size);
     for (size_t i = size - rhs.size,
-            j = 0; i < size && j < rhs.size; ++i, ++j)
+                 j = 0; i < size && j < rhs.size; ++i, ++j)
         Data[i] = rhs.Data[j];
     return *this;
 }
 
 class String &String::operator+=(const char *rhs) {
     String str(rhs);
-    size = this->size + str.size;
-    this->Resize(size);
+    this->Resize(this->size + str.size);
     for (size_t i = size - str.size,
-            j = 0; i < size && j < str.size; ++i, ++j)
+                 j = 0; i < size && j < str.size; ++i, ++j)
         Data[i] = str.Data[j];
     return *this;
 }
