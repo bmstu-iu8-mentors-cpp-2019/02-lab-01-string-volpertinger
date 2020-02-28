@@ -26,7 +26,7 @@ String::String(const char *data) : size(0) {
 }
 
 void String::Resize(size_t new_size) {
-    if (new_size >= size) {
+    if (new_size > size) {
         auto new_Data = new char[new_size];
         for (unsigned int i = 0; i < size; ++i)
             new_Data[i] = Data[i];
@@ -34,6 +34,13 @@ void String::Resize(size_t new_size) {
         Data = new_Data;
     }
     if (new_size < size) {
+        auto new_Data = new char[new_size];
+        for (unsigned int i = 0; i < new_size; ++i)
+            new_Data[i] = Data[i];
+        delete[]Data;
+        Data = new_Data;
+    }
+    if(new_size==size){
         auto new_Data = new char[new_size];
         for (unsigned int i = 0; i < new_size; ++i)
             new_Data[i] = Data[i];
