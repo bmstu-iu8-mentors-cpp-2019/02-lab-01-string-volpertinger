@@ -20,15 +20,13 @@ String::String(const char *data) : size(0) {
     const char *copy_str = data;
     for (unsigned int i = 0; copy_str[i] != '\000'; ++copy_str)
         ++size;
-    delete[]Data;
-    Data = new char[size];
+    Data = new char[size - 1];
     for (unsigned int i = 0; i < size; ++i)
         Data[i] = data[i];
 }
 
 String &String::operator=(const String &rhs) {
     if (&rhs != this) {
-        delete[]Data;
         Data = new char[rhs.size];
         size = rhs.size;
         for (unsigned int i = 0; i < size; ++i)
