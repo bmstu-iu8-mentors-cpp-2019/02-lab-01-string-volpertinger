@@ -21,7 +21,7 @@ public:
     /// Пользовательский конструктор
     /// <param name="data">Данные, которые требуется поместить в создаваемый
     /// объект </param>
-    explicit String(const char *data);
+    String(const char *data);
 
     /// Оператор присваивания
     /// <param name="data">Объект, который копируем </param>
