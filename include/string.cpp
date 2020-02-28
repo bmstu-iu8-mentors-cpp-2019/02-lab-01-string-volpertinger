@@ -52,7 +52,7 @@ class String &String::operator+=(const char *rhs) {
 
 class String &String::operator*=(unsigned int m) {
     String copy_str(*this);
-    for (unsigned int i = 1; i < m; ++i)
+    for (unsigned int i = 0; i < m; ++i)
         *this += copy_str;
     return *this;
 }
