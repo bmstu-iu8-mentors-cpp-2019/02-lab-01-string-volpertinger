@@ -1,4 +1,5 @@
 // Copyright 2020 Merzlov Nikolay merzlovnik@mail.ru
+#include "algorithm"
 #include "string.hpp"
 
 String::~String() {
@@ -26,11 +27,11 @@ String::String(const char *data) : size(0) {
 }
 
 void String::Resize(size_t new_size) {
-    String copy_str(*this);
+    String copy(*this);
     delete[]Data;
     Data = new char[new_size];
-    for (unsigned int i = 0; i < copy_str.size; ++i)
-        Data[i] = copy_str.Data[i];
+    for (unsigned int i = 0; i < copy.size; ++i)
+        Data[i] = copy.Data[i];
 }
 
 String &String::operator=(const String &rhs) {
