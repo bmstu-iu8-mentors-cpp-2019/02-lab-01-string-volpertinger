@@ -116,7 +116,7 @@ bool String::operator<(const class String &rhs) const {
 size_t String::Find(const class String &substr) const {
     unsigned int j = 0;
     size_t sub_size = 0, sub_pos = 0, last_pos = -1;
-    for (unsigned int i = 0; i < size; ++i) {
+    for (unsigned int i = 0; i < size && j < substr.size; ++i) {
         if (Data[i] == substr.Data[j]) {
             ++j;
             if (sub_size == 0)
