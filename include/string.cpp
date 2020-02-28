@@ -45,7 +45,7 @@ String &String::operator=(const String &rhs) {
 
 class String &String::operator+=(const class String &rhs) {
     size = size + rhs.size;
-    this->Resize(size);
+    Resize(size);
     for (unsigned int i = size - rhs.size, j = 0; i < size + 1; ++i, ++j)
         Data[i] = rhs.Data[j];
     return *this;
@@ -54,7 +54,7 @@ class String &String::operator+=(const class String &rhs) {
 class String &String::operator+=(const char *rhs) {
     String str(rhs);
     size = size + str.size;
-    this->Resize(size);
+    Resize(size);
     for (unsigned int i = size - str.size, j = 0; i < size; ++i, ++j)
         Data[i] = str.Data[j];
     return *this;
@@ -137,11 +137,11 @@ bool String::Empty() const {
 }
 
 char String::operator[](size_t index) const {
-    return Data[index];
+    return this->Data[index];
 }
 
 char &String::operator[](size_t index) {
-    return Data[index];
+    return this->Data[index];
 }
 
 void String::RTrim(char symbol) {
@@ -150,7 +150,7 @@ void String::RTrim(char symbol) {
         for (unsigned int i = size - 1; Data[i] == symbol; --i)
             ++del_num;
         size -= del_num;
-        this->Resize(size);
+        Resize(size);
     }
 }
 
@@ -164,7 +164,7 @@ void String::LTrim(char symbol) {
         char *new_string = new char[size];
         for (unsigned int i = del_num, j = 0; i < size + del_num; ++i, ++j)
             new_string[j] = Data[i];
-        this->Resize(size);
+        Resize(size);
         for (unsigned int i = 0; i < size; ++i)
             Data[i] = new_string[i];
     }
