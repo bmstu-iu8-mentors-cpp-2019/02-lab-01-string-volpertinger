@@ -21,7 +21,7 @@ public:
     /// Пользовательский конструктор
     /// <param name="data">Данные, которые требуется поместить в создаваемый
     /// объект </param>
-    String(const char *data);
+    explicit String(const char *data);
 
     /// Оператор присваивания
     /// <param name="data">Объект, который копируем </param>
@@ -32,6 +32,7 @@ public:
     /// <param name="rhs">Объект, который стоит после знака '+=' </param>
     /// <returns>Возвращаем ссылку на себя</returns>
     String &operator+=(const String &rhs);
+
     String &operator+=(const char *rhs);
 
     /// Оператор *=
@@ -52,7 +53,7 @@ public:
     /// <param name="substr">Подстрока, которую необходимо найти </param>
     /// <returns>Возвращаем позицию substr. Если подстрока не найдена, то
     /// возвратить -1</returns>
-    size_t Find(const String &substr) const;
+    [[nodiscard]] size_t Find(const String &substr) const;
 
     /// Функция замены символов, заменяет все символы oldSymbol на newSymbol.
     /// <param name="oldSymbol">Символ, который требуется заменить </param>
@@ -61,10 +62,10 @@ public:
 
     /// Функция возвращает длину строки
     /// <returns>Возвращаем длину строки</returns>
-    size_t Size() const;
+    [[nodiscard]] size_t Size() const;
 
     /// Функция для определения пуста ли строка
-    bool Empty() const;
+    [[nodiscard]] bool Empty() const;
 
     /// Оператор []
     /// <example>
@@ -109,7 +110,7 @@ public:
     void LTrim(char symbol);
 
     void Swap
-    (String &oth);
+            (String &oth);
 
     friend std::ostream &operator<<(std::ostream &, const String &);
 
@@ -142,7 +143,7 @@ String operator*(const String &a, unsigned int b);
 bool operator!=(const String &a, const String &b);
 
 ///Оператор ==
-bool operator==(const char* ch, const String &str);
+bool operator==(const char *ch, const String &str);
 
 /// Оператор &gt;
 bool operator>(const String &a, const String &b);
