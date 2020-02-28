@@ -21,7 +21,7 @@ public:
     /// Пользовательский конструктор
     /// <param name="data">Данные, которые требуется поместить в создаваемый
     /// объект </param>
-    explicit String(const char *data);
+    String(const char *data);
 
     /// Оператор присваивания
     /// <param name="data">Объект, который копируем </param>
@@ -32,6 +32,7 @@ public:
     /// <param name="rhs">Объект, который стоит после знака '+=' </param>
     /// <returns>Возвращаем ссылку на себя</returns>
     String &operator+=(const String &rhs);
+    String &operator+=(const char *rhs);
 
     /// Оператор *=
     /// <returns>Возвращаем ссылку на себя</returns>
@@ -139,6 +140,9 @@ String operator*(const String &a, unsigned int b);
 
 /// Оператор !=
 bool operator!=(const String &a, const String &b);
+
+///Оператор ==
+bool operator==(const char* ch, const String &str);
 
 /// Оператор &gt;
 bool operator>(const String &a, const String &b);

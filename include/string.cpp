@@ -5,9 +5,8 @@ String::~String() {
     delete[] Data;
 }
 
-String::String() : size(1) {
+String::String() : size(0) {
     Data = new char[size];
-    Data[0] = '0';
 }
 
 String::String(const String &rhs) : size(rhs.size) {
@@ -43,9 +42,17 @@ class String &String::operator+=(const class String &rhs) {
     return *this;
 }
 
+class String &String::operator+=(const char *rhs) {
+    String str(rhs);
+    size = size + str.size;
+    for (unsigned int i = size - str.size, j = 0; i < size; ++i, ++j)
+        Data[i] = str[j];
+    return *this;
+}
+
 class String &String::operator*=(unsigned int m) {
     String copy_str(*this);
-    for (unsigned int i = 1; i < m; ++i)
+    for (unsigned int i = 0; i < m; ++i)
         *this += copy_str;
     return *this;
 }
@@ -56,6 +63,19 @@ bool String::operator==(const class String &rhs) const {
     if (size == rhs.size) {
         for (unsigned int i = 0; i < size; ++i) {
             if (Data[i] != rhs.Data[i])
+                return false;
+        }
+    }
+    return true;
+}
+
+bool operator==(const char *ch, const String &str) {
+    String rhs(ch);
+    if (str.Size() != rhs.Size())
+        return false;
+    if (str.Size() == rhs.Size()) {
+        for (unsigned int i = 0; i < str.Size(); ++i) {
+            if (str[i] != rhs[i])
                 return false;
         }
     }
