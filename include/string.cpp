@@ -11,7 +11,7 @@ String::String() : size(0) {
 
 String::String(const String &rhs) : size(rhs.size) {
     Data = new char[size];
-    for (unsigned int i = 0; i < size; ++i) {
+    for (size_t i = 0; i < size; ++i) {
         Data[i] = rhs[i];
     }
 }
@@ -26,11 +26,18 @@ String::String(const char *data) : size(0) {
 }
 
 void String::Resize(size_t new_size) {
-    String copy_str(*this);
+    auto new_Data = new char[new_size];
+    for (unsigned int i = 0; i < size; ++i)
+        new_Data[i] = Data[i];
     delete[]Data;
+    Data = new_Data;
+    /*
+    String copy_str(*this);
     Data = new char[new_size];
+    delete[]Data;
     for (unsigned int i = 0; i < copy_str.size; ++i)
         Data[i] = copy_str.Data[i];
+        */
 }
 
 String &String::operator=(const String &rhs) {
