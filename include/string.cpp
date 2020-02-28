@@ -35,7 +35,7 @@ String &String::operator=(const String &rhs) {
     return *this;
 }
 
-class String &String::operator+=(const class String &rhs) {
+class String &String::operator+=(const String &rhs) {
     size = size + rhs.size;
     for (unsigned int i = size - rhs.size, j = 0; i < size; ++i, ++j)
         Data[i] = rhs.Data[j];
