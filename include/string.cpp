@@ -46,7 +46,7 @@ class String &String::operator+=(const char *rhs) {
     String str(rhs);
     size = size + str.size;
     for (unsigned int i = size - str.size, j = 0; i < size; ++i, ++j)
-        Data[i] = str[j];
+        Data[i] = str.Data[j];
     return *this;
 }
 
