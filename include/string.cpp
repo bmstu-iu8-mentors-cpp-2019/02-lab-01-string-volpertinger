@@ -54,8 +54,8 @@ String &String::operator=(const String &rhs) {
 
 class String &String::operator+=(const class String &rhs) {
     size = this->size + rhs.size;
-    Resize(size);
-    for (unsigned int i = size - rhs.size,
+    this->Resize(size);
+    for (size_t i = size - rhs.size,
             j = 0; i < size && j < rhs.size; ++i, ++j)
         Data[i] = rhs.Data[j];
     return *this;
@@ -64,8 +64,8 @@ class String &String::operator+=(const class String &rhs) {
 class String &String::operator+=(const char *rhs) {
     String str(rhs);
     size = this->size + str.size;
-    Resize(size);
-    for (unsigned int i = size - str.size,
+    this->Resize(size);
+    for (size_t i = size - str.size,
             j = 0; i < size && j < str.size; ++i, ++j)
         Data[i] = str.Data[j];
     return *this;
@@ -161,7 +161,7 @@ void String::RTrim(char symbol) {
         for (unsigned int i = size - 1; Data[i] == symbol; --i)
             ++del_num;
         size -= del_num;
-        Resize(size);
+        this->Resize(size);
     }
 }
 
@@ -175,7 +175,7 @@ void String::LTrim(char symbol) {
         char *new_string = new char[size];
         for (unsigned int i = del_num, j = 0; i < size + del_num; ++i, ++j)
             new_string[j] = Data[i];
-        Resize(size);
+        this->Resize(size);
         for (unsigned int i = 0; i < size; ++i)
             Data[i] = new_string[i];
     }
