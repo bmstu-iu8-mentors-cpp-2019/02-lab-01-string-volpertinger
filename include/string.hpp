@@ -23,6 +23,8 @@ public:
     /// объект </param>
     explicit String(const char *data);
 
+    //Resize для устранения проблем с памятью
+    void Resize(size_t new_size);
     /// Оператор присваивания
     /// <param name="data">Объект, который копируем </param>
     /// <returns>Возвращаем ссылку на себя</returns>
