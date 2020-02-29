@@ -172,12 +172,14 @@ void String::LTrim(char symbol) {
             ++del_num;
         }
         size -= del_num;
-        char *new_string = new char[size];
-        for (unsigned int i = del_num, j = 0; i < size + del_num; ++i, ++j)
-            new_string[j] = Data[i];
-        this->Resize(size);
-        for (unsigned int i = 0; i < size; ++i)
-            Data[i] = new_string[i];
+        if (size != 0) {
+            char *new_string = new char[size];
+            for (unsigned int i = del_num, j = 0; i < size + del_num; ++i, ++j)
+                new_string[j] = Data[i];
+            this->Resize(size);
+            for (unsigned int i = 0; i < size; ++i)
+                Data[i] = new_string[i];
+        }
     }
 }
 
