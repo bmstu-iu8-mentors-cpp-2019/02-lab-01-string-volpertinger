@@ -6,7 +6,7 @@ String::~String() {
 }
 
 String::String() : size(0) {
-    Data = new char[size];
+    Data = new char[1];
 }
 
 String::String(const String &rhs) : size(rhs.size) {
