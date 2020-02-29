@@ -6,6 +6,7 @@ String::~String() {
 }
 
 String::String() : size(0) {
+    Data = nullptr;
 }
 
 String::String(const String &rhs) : size(rhs.size) {
